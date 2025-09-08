@@ -902,13 +902,13 @@ local function startAutoHopTimer()
                     startTime = tick() -- รีเซ็ตเวลา
                 end
                 
-                task.wait(3)
+                task.wait()
                 
                 if game.JobId == currentJobId then
                     print("⚠️ ยังอยู่เซิร์ฟเดิม ลองใหม่ใน 5 วินาที... Current: " .. game.JobId)
                     notify("Retry", "⚠️ ลองใหม่ใน 5 วินาที", 3)
                     isHopping = false
-                    task.wait(5)
+                    task.wait()
                 else
                     print("✅ ย้ายสำเร็จ! JobId ใหม่: " .. game.JobId)
                     currentJobId = game.JobId -- อัพเดท (แม้จะอัตโนมัติ แต่ยืนยัน)
@@ -1030,7 +1030,7 @@ elseif game.PlaceId == 126509999114328 then
     _G.FastMode = _G.FastMode or true
     _G.ShowLogs = _G.ShowLogs or true
     _G.UseTeleport = _G.UseTeleport or true
-    _G.MaxCycles = _G.MaxCycles or 4
+    _G.MaxCycles = _G.MaxCycles or 2
 
     
 local UserInputService = game:GetService("UserInputService")
@@ -1118,12 +1118,6 @@ local function VFHJNK_fake_script() -- Frame.LocalScript
 end
 coroutine.wrap(VFHJNK_fake_script)()
     
-    -- ฟาร์มเพชร
-    _G.FarmChest = _G.FarmChest or true
-    _G.FastMode = _G.FastMode or true
-    _G.ShowLogs = _G.ShowLogs or true
-    _G.UseTeleport = _G.UseTeleport or true
-    _G.MaxCycles = _G.MaxCycles or 3
 
     -- ฟังก์ชัน Teleport ไปหากล่อง
     local function teleportToChest(chest)
@@ -1351,7 +1345,7 @@ coroutine.wrap(VFHJNK_fake_script)()
                             local success, err = pcall(function()
                                 if _G.UseTeleport then
                                     teleportToChest(v)
-                                    task.wait(0.2)
+                                    task.wait(0)
                                 end
                                 
                                 fireproximityprompt(proximityInteraction)
@@ -1362,7 +1356,7 @@ coroutine.wrap(VFHJNK_fake_script)()
                                 end
                                 
                                 if not _G.FastMode then
-                                    task.wait(0.5)
+                                    task.wait(0)
                                     collectDiamonds()
                                 end
                             end)
